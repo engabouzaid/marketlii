@@ -15,7 +15,6 @@ import 'package:marketlii/widget/app_text.dart';
 class HomeView extends StatefulWidget {
   static const String id = 'HomePage';
 
-
   @override
   _HomeViewState createState() => _HomeViewState();
 }
@@ -75,39 +74,38 @@ class _HomeViewState extends State<HomeView> {
           child: ListView(
             children: [
               Row(
-              
                 children: [
-                
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(
-                              text: 'اهلا بكم!',
-                              color: AppColors.primary,
-                              fontSize: 3.6,
-                            ),
-                            SizedBox(
-                              height: getProportionateScreenHeight(3),
-                            ),
-                            AppText(
-                              text: 'هيا نحصل علي اجدد الاصدارات',
-                              color: Colors.black54,
-                              fontSize: 3.3,
-                            ),
-                          ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                          text: 'اهلا بكم!',
+                          color: AppColors.primary,
+                          fontSize: 3.6,
                         ),
-                      ),
-                      TextButton(onPressed: () {
-                        Auth().logOut(context);
-                      }
-                      , child: AppText(
-                        text: 'تسجيل الخروج',
-                        color: AppColors.primary,
-                        fontSize: 3.6,
-                      ),)
-                
-
+                        SizedBox(
+                          height: getProportionateScreenHeight(3),
+                        ),
+                        AppText(
+                          text: 'هيا نحصل علي اجدد الاصدارات',
+                          color: Colors.black54,
+                          fontSize: 3.3,
+                        ),
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Auth().UserLogOut(context);
+                    
+                    },
+                    child: AppText(
+                      text: 'تسجيل الخروج',
+                      color: AppColors.primary,
+                      fontSize: 3.6,
+                    ),
+                  )
                 ],
               ),
               SizedBox(

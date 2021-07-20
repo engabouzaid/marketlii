@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:marketlii/screens/auth/login_view.dart';
 import 'package:marketlii/view/main_screen.dart';
@@ -82,44 +83,26 @@ class Auth {
     }
   }
 
-  Future<Null> logOut(
-      BuildContext context) async {
+  Future<Null> UserLogOut(BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String token = sharedPreferences.getString('token');
+    var response = await CallAPI().post('https://marketlii.matsuda.website/api/logout',{},
 
-    var response = await http.post(Uri.parse('https://marketlii.matsuda.website/api/logout'), headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    });
-    var data = json.decode(response.body);
-    if (response.statusCode == 200) {
-      sharedPreferences.clear();
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => LoginView()));
-    }
-  }
-
-  Future<Null> userLogout(
-    BuildContext context,
-  ) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String token = sharedPreferences.getString('token');
-    var response = await http.post(
-      Uri.parse('https://marketlii.matsuda.website/api/logout'),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer $token',
-      },
-    );
-    var data = json.decode(response.body);
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },);
+        var data = json.decode(response.body);
     print(data);
+    print(response.statusCode);
+    sharedPreferences.clear();
     if (response.statusCode == 200) {
-      sharedPreferences.clear();
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => LoginView()));
-      CustomSnackBar().notErrorShowSnackBar(data['message']);
+      print(token);
+
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginView()));
     } else {
-      CustomSnackBar().errorShowSnackBar(data['message']);
+      Get.snackbar(data['message'].toString(), data['message']);
     }
   }
 
