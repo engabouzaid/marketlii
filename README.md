@@ -1,6 +1,6 @@
 # marketlii
 
-an Arabic E-Commerce Application for Electric Products using Provider, Http, Shared Preferences.
+an Arabic E-Commerce Application for Electric Products using APIs, Provider, Http, Shared preferences.
 
 Splash screen with smooth animation. Login and register screens with form validation and shared preferences to save user’s token to see if he/she logged before so the app navigates directly to the home screen. Beautiful home screen with search bar, slider, categories, and products. Categories screen, cart screen, product detail screen, address screen, orders screen with a button to cancel your order.  
 
